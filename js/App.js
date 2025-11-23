@@ -3,9 +3,30 @@ const fetchData = () => fetch('/data/data.json')
     .catch(e => console.log('error', e))
 
 
-class Movie {
-}
-
+    class Movie {
+        constructor(data) {
+            this._id = data._id
+            this._title = data._title
+            this._img = data._img
+            this._rating = data._rating
+        }
+     
+        get id() {
+            return this._id
+        }
+     
+        get title() {
+            return this._title
+        }
+     
+        get img() {
+            return this._img
+        }
+     
+        get rating() {
+            return this._rating
+        }
+     }
 
 class App {
     async init() {
