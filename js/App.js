@@ -5,6 +5,11 @@ class App {
         
         this.moviesApi = new MovieApi('/data/new-movie-data.json')
         this.externalMoviesApi = new MovieApi('/data/external-movie-data.json')
+         // WishLib Pub/sub
+         this.WishListSubject = new WishlistSubject()
+         this.WhishListCounter = new WhishListCounter()
+ 
+         this.WishListSubject.subscribe(this.WhishListCounter)
     }
 
     async main() {
@@ -27,7 +32,7 @@ class App {
 
         FullMovies.forEach(movie => {
                 const Template = movieCardWithPlayer(
-                    new MovieCard(movie)
+                    new MovieCard(movie,this.WishListSubject)
                 )
 
                 this.$moviesWrapper.appendChild(
